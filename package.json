@@ -1,0 +1,119 @@
+{
+  "name": "next-karma",
+  "version": "1.0.0",
+  "scripts": {
+    "analyze": "set ANALYZE=true&&yarn build",
+    "build": "next build",
+    "install:clean": "rm -rf node_modules && rm yarn.lock && yarn",
+    "dev": "next",
+    "lint:code": "eslint src && eslint pages && eslint karma",
+    "lint:code:fix": "eslint src --fix && eslint pages --fix && eslint karma --fix && prettier --write src && prettier --write pages && prettier --write karma",
+    "lint:types": "tsc --noEmit",
+    "start": "next start",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "postinstall": "yarn-deduplicate -l"
+  },
+  "dependencies": {
+    "@chakra-ui/core": "1.0.0-rc.3",
+    "@chakra-ui/icons": "1.0.0-rc.3",
+    "@sentry/minimal": "5.24.2",
+    "@sentry/node": "5.24.2",
+    "@sentry/react": "5.24.2",
+    "cookie": "0.4.1",
+    "i18next": "19.7.0",
+    "next": "9.5.3",
+    "next-absolute-url": "1.2.2",
+    "next-connect": "0.9.0",
+    "react": "17.0.0-rc.1",
+    "react-dom": "17.0.0-rc.1",
+    "react-flag-kit": "0.3.1",
+    "react-i18next": "11.7.2",
+    "react-icons": "3.11.0",
+    "web-vitals": "0.2.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-conventional": "11.0.0",
+    "@next/bundle-analyzer": "9.5.3",
+    "@sentry/types": "5.24.2",
+    "@sentry/webpack-plugin": "1.12.1",
+    "@testing-library/jest-dom": "5.11.4",
+    "@testing-library/react": "11.0.4",
+    "@testing-library/react-hooks": "3.4.1",
+    "@testing-library/user-event": "12.1.5",
+    "@types/jest": "26.0.14",
+    "@types/jest-axe": "3.5.0",
+    "@types/node": "14.11.1",
+    "@types/node-fetch": "2.5.7",
+    "@types/react": "16.9.49",
+    "@types/react-dom": "16.9.8",
+    "@types/test-listen": "1.1.0",
+    "babel-jest": "26.3.0",
+    "dotenv": "8.2.0",
+    "eslint": "7.9.0",
+    "eslint-config-galex": "2.3.5",
+    "html-validate": "3.3.0",
+    "husky": "4.3.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "26.4.2",
+    "jest-axe": "4.0.0",
+    "jest-watch-typeahead": "0.6.1",
+    "lint-staged": "10.4.0",
+    "msw": "0.21.2",
+    "next-compose-plugins": "2.2.0",
+    "next-offline": "5.0.2",
+    "node-fetch": "2.6.1",
+    "prettier": "2.1.2",
+    "react-test-renderer": "17.0.0-rc.1",
+    "test-listen": "1.1.0",
+    "typescript": "4.0.3",
+    "whatwg-fetch": "3.4.1",
+    "yarn-deduplicate": "3.0.0"
+  },
+  "license": "MIT",
+  "author": "Gerrit Alex",
+  "hooks": {
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,tsx,ts,tsx,css,scss}": [
+      "eslint --fix"
+    ],
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": "prettier --write"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "(karma|pages|src)/**/*.{js,jsx,ts,tsx}"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/scripts/jest/setupTests.js"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/scripts/jest/cssTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    },
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "coverageDirectory": "coverage",
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ]
+  }
+}
